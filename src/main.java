@@ -1,20 +1,50 @@
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 
 public class main{
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws FileNotFoundException {
 		// TODO Auto-generated method stub
 		BinaryTreeSet arbolTraductor = new BinaryTreeSet();
 		Lector lector = new Lector();
-
-		//Bloque ejemplo para agregar traducciones al diccionario (Deberan extraerlas del archivo)///////////////////
-		arbolTraductor.addTranslation( lector.getArrayAsociacion(0),lector.getArrayAsociacion(1));
-		arbolTraductor.addTranslation("Zeta","Zeta");
-		arbolTraductor.addTranslation("Tree","Arbol");
-		arbolTraductor.addTranslation("Bee","Abeja");
-		arbolTraductor.addTranslation("Zero","Cero");
-		arbolTraductor.addTranslation("Car", "Carro");
-		/////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		
+		int numero = 0;
+		int a = 0;
+		
+		while(a == 0){
+        System.out.println("Bienvenido a la calculadora");
+        System.out.println("Ingrese el numero de traducciones a ingresar:");
+        
+        @SuppressWarnings("resource")
+		Scanner entradaEscaner = new Scanner (System.in); //Creación de un objeto Scanner
+        try {
+			numero = entradaEscaner.nextInt();
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			System.out.println("POR FAVOR! Ingrese un número");
+			a = 0;
+		}
+       try {
+		if (numero > 0 ){
+		    	a = 1;
+		   }
+		   else{
+			   a =0;
+		   }
+		}
+        catch (Exception e) {
+		// TODO Auto-generated catch block
+		System.out.println("POR FAVOR! Ingrese un número");
+		a = 0;
+        	}
+	    }
+		
+		
+		lector.lecturaAsociacion("diccionario.txt",6);
+		
+		 for(int e=0; e < 6; e++){
+			  arbolTraductor.addTranslation(lector.getArrayIngles(e),lector.getArrayEspanol(e));
+          }
 		
 		//Bloque de codigo ejemplo para obtener la traduccion de una palabra/////////////////////////////////////////
 		System.out.println("La traduccion de Phone es "+arbolTraductor.getTranslation("Phone"));
