@@ -3,6 +3,11 @@ public class BinaryTree<E>{
 	BinaryTree<E> left = null;
 	BinaryTree<E> right = null;
 	
+	/**
+	 * Instantiates a new binary tree.
+	 *
+	 * @param value the value
+	 */
 	public BinaryTree(E value){
 		this.node = value;
 	}

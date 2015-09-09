@@ -6,6 +6,13 @@ public class BinaryTreeSet{
 	protected Stack<BinaryTree<Asociacion>> todo = new Stack<BinaryTree<Asociacion>>();
 	int counter = 0;
 	
+	/**
+	 * Locate.
+	 *
+	 * @param root the root
+	 * @param value the value
+	 * @return the binary tree
+	 */
 	//Locate method
 	public BinaryTree<Asociacion> locate(BinaryTree<Asociacion> root, String value){
 		String rootValue = root.getNode().getKey();
