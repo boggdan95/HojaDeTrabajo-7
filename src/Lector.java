@@ -3,127 +3,76 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Lector {
 	
 	private String lecturaAsociacion;
-	private String[] arrayIngles = new String[100];
-	private String[] arrayEspanol = new String[100];
+	private ArrayList<String> arrayAsociacion;
 	private String lecturaTraduccion;
+	private BinaryTreeSet arbolTraductor;
 	
 	public Lector() {
 		super();
+		arrayAsociacion = new ArrayList<String>();
+		arbolTraductor = new BinaryTreeSet();
 		// TODO Auto-generated constructor stub
 	}
+
+	public String getArrayAsociacion(int i) {
+		return arrayAsociacion.get(i);
+	}
 	
-	
-
-	/**
-	 * Gets the array ingles.
-	 *
-	 * @param i the i
-	 * @return the array ingles
-	 */
-	public String getArrayIngles(int i) {
-		return arrayIngles[i];
+	public BinaryTreeSet getArbol(){
+		return arbolTraductor;
 	}
 
-
-
-	/**
-	 * Sets the array ingles.
-	 *
-	 * @param arrayIngles the new array ingles
-	 */
-	public void setArrayIngles(String[] arrayIngles) {
-		this.arrayIngles = arrayIngles;
+	public void setArrayAsociacion(ArrayList<String> arrayAsociacion) {
+		this.arrayAsociacion = arrayAsociacion;
 	}
 
-
-
-	/**
-	 * Gets the array espanol.
-	 *
-	 * @param i the i
-	 * @return the array espanol
-	 */
-	public String getArrayEspanol(int i) {
-		return arrayEspanol[i];
-	}
-
-
-
-	/**
-	 * Sets the array espanol.
-	 *
-	 * @param arrayEspanol the new array espanol
-	 */
-	public void setArrayEspanol(String[] arrayEspanol) {
-		this.arrayEspanol = arrayEspanol;
-	}
-
-
-
-	/**
-	 * Lectura asociacion.
-	 *
-	 * @param string the string
-	 * @param numero the numero
-	 * @throws FileNotFoundException the file not found exception
-	 */
-	public void lecturaAsociacion(String string, int numero) throws FileNotFoundException{
-	        FileReader fr = new FileReader(string);
+	public void lecturaAsociacion(String texto) throws IOException{
+	        FileReader fr = new FileReader(texto);
 	        @SuppressWarnings("resource")
 			BufferedReader bf = new BufferedReader(fr);
-	       
-	        boolean fin = false;
-	        StringBuffer sbf = new StringBuffer();
-	        int i = 0;
-	        try {
-	        	
-	        	while( i < numero ){
-	            	   String linea = bf.readLine() ;
-					   sbf.append(linea);
-					   int coma = linea.indexOf(',');
-	       	           String p1 = linea.substring(1,coma);
-	       	           String p2 = linea.substring(coma+1,linea.length() -1);
-					       	     arrayIngles[i] = p1;
-					       	     arrayEspanol[i] = p2;
-					   i++;
-					   
-					   
-	        	}	               
-	        }
-	         catch (IOException e) {
-	                // TODO Auto-generated catch block
-	                e.printStackTrace();
-	        }      
-	               
 	        
+	        String linea;
+	         while((linea=bf.readLine())!=null){
+	        	 String ingles = "", espanol = "";
+	        	 boolean siguiente=false;
+	        	 for(int x=0; x<linea.length(); x++){
+	        		 if(linea.substring(x, x+1).equals("(") || linea.substring(x, x+1).equals(")")){}
+	        		 else if(linea.substring(x, x+1).equals(","))
+	        			 siguiente=true;
+	        		 
+	        		 else if(!siguiente)
+	        			 ingles+=linea.substring(x, x+1);
+	        		 else if(siguiente)
+	        			 espanol+=linea.substring(x, x+1);
+	        	 }
+	        	 arbolTraductor.addTranslation(ingles,espanol);
+	        }
+		
 	}
 	
-	/**
-	 * Lectura traduccion.
-	 *
-	 * @param texto the texto
-	 * @throws FileNotFoundException the file not found exception
-	 */
-	//EN ESTE HAY QUE TRABAJAR
-	public void lecturaTraduccion(String texto) throws FileNotFoundException{
+	public String lecturaTraduccion(String texto) throws IOException{
 		FileReader fr = new FileReader(texto);
         @SuppressWarnings("resource")
 		BufferedReader bf = new BufferedReader(fr);
 
-        try {
-                lecturaTraduccion = bf.readLine();
-        } catch (IOException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
+        String linea;
+        String palabra = "", frase = "";
+        while((linea=bf.readLine())!=null){
+        	for(int x=0; x<linea.length(); x++){
+        		if(!linea.substring(x, x+1).equals(" ")){
+        			palabra+=linea.substring(x, x+1);
+       		 	}
+        		else if(linea.substring(x, x+1).equals(" ")){
+        			frase = frase+" "+arbolTraductor.getTranslation(palabra);
+        			palabra="";
+       		 	}
+       	 	}
         }
-        
+        return frase;
 	}
-
-	
 }
-
-
