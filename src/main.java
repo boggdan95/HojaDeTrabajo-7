@@ -4,9 +4,10 @@ public class main{
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		BinaryTreeSet arbolTraductor = new BinaryTreeSet();
+		Lector lector = new Lector();
 
 		//Bloque ejemplo para agregar traducciones al diccionario (Deberan extraerlas del archivo)///////////////////
-		arbolTraductor.addTranslation("Phone","Telefono");
+		arbolTraductor.addTranslation( lector.getArrayAsociacion(0),lector.getArrayAsociacion(1));
 		arbolTraductor.addTranslation("Zeta","Zeta");
 		arbolTraductor.addTranslation("Tree","Arbol");
 		arbolTraductor.addTranslation("Bee","Abeja");
