@@ -74,7 +74,7 @@ public class BinaryTreeSet{
 		}
 		
 		BinaryTree<Asociacion> possibleLocation = locate(root, english);
-		if(possibleLocation.getNode().getKey()==english){
+		if(possibleLocation.getNode().getKey().equals(english)){
 			return possibleLocation.getNode().getValue();
 		} else {
 			return null;
