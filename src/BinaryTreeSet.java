@@ -77,7 +77,7 @@ public class BinaryTreeSet{
 		if(possibleLocation.getNode().getKey().equals(english)){
 			return possibleLocation.getNode().getValue();
 		} else {
-			return null;
+			return "*"+english+"*";
 		}
 	}
 	
