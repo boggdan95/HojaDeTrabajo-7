@@ -1,3 +1,8 @@
+/**
+ *
+ * @author Boggdan Barrientos, Bryan Chan, Christopher
+ */
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;

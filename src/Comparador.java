@@ -1,3 +1,8 @@
+/**
+ *
+ * @author Boggdan Barrientos, Bryan Chan, Christopher
+ */
+
 public class Comparador {
 	public int comparar(String palabra1, String palabra2){
 		char[] palabra1Array = palabra1.toCharArray();

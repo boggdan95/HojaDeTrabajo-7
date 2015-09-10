@@ -1,3 +1,8 @@
+/**
+ *
+ * @author Boggdan Barrientos, Bryan Chan, Christopher
+ */
+
 public class BinaryTree<E>{
 	E node;
 	BinaryTree<E> left = null;

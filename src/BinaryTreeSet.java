@@ -1,3 +1,8 @@
+/**
+ *
+ * @author Boggdan Barrientos, Bryan Chan, Christopher
+ */
+
 import java.util.Stack;
 
 public class BinaryTreeSet{

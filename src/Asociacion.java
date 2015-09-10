@@ -1,3 +1,8 @@
+/**
+ *
+ * @author Boggdan Barrientos, Bryan Chan, Christopher
+ */
+
 public class Asociacion {
 	String key;
 	String value;
